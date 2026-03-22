@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Shital Bolkuntwar — Ayurvedic Eye & ENT Specialist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2744;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --cyan: #06b6d4;
+      --bg: #f0f4ff;
+      --bg2: #e8f0fe;
+      --white: #ffffff;
+      --gray: #64748b;
+      --gray-light: #e2e8f0;
+      --text: #1e293b;
+      --green: #22c55e;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gray-light);
+      box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; }
+    .nav-logo-box {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--blue); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.95rem;
+    }
+    .nav-brand-text strong { font-size: 0.95rem; font-weight: 600; color: var(--text); display: block; }
+    .nav-brand-text span { font-size: 0.72rem; color: var(--gray); }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { text-decoration: none; font-size: 0.875rem; color: var(--gray); font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-phone { font-size: 0.82rem; color: var(--gray); }
+    .nav-cta {
+      background: var(--blue); color: #fff; border: none;
+      padding: 9px 20px; border-radius: 8px; font-size: 0.82rem;
+      font-weight: 600; cursor: pointer; transition: background 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .nav-cta:hover { background: var(--blue-light); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; padding: 90px 48px 60px;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8f4fd 60%, #f0f9ff 100%);
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 60px;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #dbeafe; color: var(--blue);
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      font-weight: 700; line-height: 1.1; color: var(--navy); margin-bottom: 16px;
+    }
+    .hero-quals p {
+      font-size: 0.875rem; color: var(--gray);
+      display: flex; align-items: center; gap: 8px; margin-bottom: 4px;
+    }
+    .hero-quals p::before { content: '🎓'; font-size: 0.8rem; }
+    .hero-spec { font-size: 1rem; color: var(--text); margin: 16px 0 28px; line-height: 1.6; }
+    .hero-stats { display: flex; gap: 16px; margin-bottom: 32px; }
+    .stat-box {
+      background: #fff; border: 1px solid var(--gray-light);
+      border-radius: 12px; padding: 16px 24px;
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .stat-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .stat-icon.blue { background: #dbeafe; }
+    .stat-icon.green { background: #dcfce7; }
+    .stat-num { font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+    .stat-lbl { font-size: 0.72rem; color: var(--gray); }
+    .hero-btns { display: flex; gap: 14px; }
+    .btn-blue {
+      background: var(--blue); color: #fff; border: none;
+      padding: 13px 28px; border-radius: 8px; font-size: 0.9rem;
+      font-weight: 600; cursor: pointer; transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-blue:hover { background: var(--blue-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.3); }
+    .btn-ghost {
+      background: transparent; color: var(--navy);
+      border: 1.5px solid var(--gray-light);
+      padding: 13px 28px; border-radius: 8px; font-size: 0.9rem;
+      font-weight: 500; cursor: pointer; transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+    .hero-cards { display: flex; flex-direction: column; gap: 14px; }
+    .hero-img-card {
+      border-radius: 16px; overflow: hidden; position: relative;
+      height: 150px; display: flex; align-items: flex-end; padding: 18px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+    }
+    .hero-img-card.eye { background: linear-gradient(135deg, #312e81, #4338ca, #818cf8); }
+    .hero-img-card.ent { background: linear-gradient(135deg, #1e3a5f, #1d4ed8, #60a5fa); }
+    .hero-img-card.shiro { background: linear-gradient(135deg, #134e4a, #0f766e, #2dd4bf); }
+    .hic-emoji { font-size: 3rem; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); opacity: 0.45; }
+    .hero-img-card h4 { color: #fff; font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
+    .hero-img-card p { color: rgba(255,255,255,0.78); font-size: 0.75rem; }
+
+    /* SECTION COMMON */
+    .section-lbl { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.2vw, 2.4rem); font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+    .sdiv { width: 48px; height: 3px; background: var(--blue); border-radius: 2px; margin-bottom: 22px; }
+
+    /* ABOUT */
+    .about { padding: 88px 48px; background: #fff; }
+    .about-inner { max-width: 880px; margin: 0 auto; text-align: center; }
+    .about-inner .sdiv { margin: 0 auto 22px; }
+    .about p { font-size: 0.975rem; color: var(--gray); line-height: 1.8; margin-bottom: 14px; max-width: 760px; margin-left: auto; margin-right: auto; }
+    .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin: 36px 0; }
+    .pillar { background: var(--bg); border-radius: 14px; padding: 26px 22px; text-align: left; border: 1px solid var(--gray-light); }
+    .pillar-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 14px; }
+    .pillar-icon.b { background: #dbeafe; }
+    .pillar-icon.g { background: #dcfce7; }
+    .pillar-icon.t { background: #cffafe; }
+    .pillar h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 7px; color: var(--navy); }
+    .pillar p { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
+    .mission { background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%); border-radius: 16px; padding: 32px 40px; text-align: left; }
+    .mission h3 { color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .mission p { color: rgba(255,255,255,0.9); font-size: 0.9rem; line-height: 1.7; }
+
+    /* SERVICES */
+    .services { padding: 88px 48px; background: var(--bg); }
+    .srv-header { text-align: center; margin-bottom: 44px; }
+    .srv-header .sdiv { margin: 0 auto 16px; }
+    .srv-header p { color: var(--gray); font-size: 0.88rem; max-width: 500px; margin: 0 auto; }
+    .srv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 36px; }
+    .srv-card {
+      background: #fff; border-radius: 16px; padding: 26px 22px;
+      border: 1px solid var(--gray-light); transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    .srv-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(37,99,235,0.1); border-color: #bfdbfe; }
+    .srv-icon { width: 46px; height: 46px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 14px; }
+    .srv-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .srv-card > p { font-size: 0.8rem; color: var(--gray); line-height: 1.6; margin-bottom: 12px; }
+    .srv-card h5 { font-size: 0.72rem; font-weight: 700; color: var(--text); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .srv-list { list-style: none; }
+    .srv-list li { font-size: 0.78rem; color: var(--gray); display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .srv-list li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .why-box { background: #fff; border-radius: 16px; padding: 34px 38px; border: 1px solid var(--gray-light); }
+    .why-box h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; text-align: center; color: var(--navy); margin-bottom: 26px; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .why-item { display: flex; gap: 12px; align-items: flex-start; }
+    .why-chk { width: 22px; height: 22px; border-radius: 50%; background: #dcfce7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.65rem; color: var(--green); font-weight: 700; margin-top: 2px; }
+    .why-item h5 { font-size: 0.875rem; font-weight: 600; margin-bottom: 3px; color: var(--navy); }
+    .why-item p { font-size: 0.78rem; color: var(--gray); line-height: 1.5; }
+
+    /* AUDIO */
+    .audio-sec { padding: 88px 48px; background: #fff; }
+    .audio-header { text-align: center; margin-bottom: 44px; }
+    .audio-header .sdiv { margin: 0 auto 16px; }
+    .audio-header p { color: var(--gray); font-size: 0.88rem; }
+    .audio-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 28px; }
+    .audio-card { background: var(--bg); border-radius: 14px; padding: 26px 22px; text-align: center; border: 1px solid var(--gray-light); }
+    .audio-icon { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 14px; }
+    .audio-icon.b { background: #dbeafe; }
+    .audio-icon.g { background: #dcfce7; }
+    .audio-icon.t { background: #cffafe; }
+    .audio-card h4 { font-size: 0.92rem; font-weight: 600; color: var(--navy); margin-bottom: 7px; }
+    .audio-card p { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
+    .cta-banner { background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%); border-radius: 16px; padding: 38px; text-align: center; margin-bottom: 28px; }
+    .cta-banner h3 { color: #fff; font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; margin-bottom: 10px; }
+    .cta-banner p { color: rgba(255,255,255,0.85); font-size: 0.88rem; margin-bottom: 22px; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: #fff; color: var(--blue); border: none; padding: 12px 22px; border-radius: 8px; font-size: 0.86rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.2s; }
+    .btn-white:hover { opacity: 0.88; }
+    .btn-outline-w { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.6); padding: 12px 22px; border-radius: 8px; font-size: 0.86rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+    .btn-outline-w:hover { background: rgba(255,255,255,0.12); }
+    .expect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .expect-box { background: var(--bg); border-radius: 14px; padding: 26px 22px; border: 1px solid var(--gray-light); }
+    .expect-box h4 { font-size: 0.88rem; font-weight: 600; color: var(--navy); margin-bottom: 14px; }
+    .expect-box ul { list-style: none; }
+    .expect-box ul li { font-size: 0.8rem; color: var(--gray); display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; }
+    .expect-box ul li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .expect-box ol { list-style: none; counter-reset: st; }
+    .expect-box ol li { font-size: 0.8rem; color: var(--gray); display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; counter-increment: st; }
+    .expect-box ol li::before { content: counter(st); background: var(--blue); color: #fff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* BOOKING */
+    #booking { padding: 88px 48px; background: var(--bg); }
+    .booking-header { text-align: center; margin-bottom: 36px; }
+    .booking-header .sdiv { margin: 0 auto 16px; }
+    .booking-header p { color: var(--gray); font-size: 0.88rem; }
+    .form-wrap { max-width: 640px; margin: 0 auto; }
+    .form-card { background: #fff; border-radius: 20px; padding: 38px; border: 1px solid var(--gray-light); box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .frow.full { grid-template-columns: 1fr; }
+    .fg { display: flex; flex-direction: column; gap: 6px; }
+    .fg label { font-size: 0.78rem; font-weight: 600; color: var(--text); }
+    .fg input, .fg select, .fg textarea { padding: 11px 13px; border: 1.5px solid var(--gray-light); border-radius: 9px; font-family: 'Inter', sans-serif; font-size: 0.875rem; color: var(--text); background: var(--bg); outline: none; transition: border-color 0.2s; }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--blue); background: #fff; }
+    .fg textarea { resize: vertical; min-height: 84px; }
+    .submit-btn { width: 100%; background: var(--blue); color: #fff; padding: 14px; border-radius: 10px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-top: 6px; }
+    .submit-btn:hover { background: var(--blue-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.3); }
+    .form-note { font-size: 0.74rem; color: var(--gray); text-align: center; margin-top: 10px; }
+
+    /* PAYMENT */
+    #payment-page { display: none; min-height: 100vh; background: var(--bg); padding: 100px 20px 60px; flex-direction: column; align-items: center; }
+    .pay-card { background: #fff; border-radius: 20px; padding: 38px; max-width: 440px; width: 100%; text-align: center; border: 1px solid var(--gray-light); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .pay-card h2 { font-family: 'Playfair Display', serif; font-size: 1.75rem; color: var(--navy); margin-bottom: 6px; }
+    .pay-card > p { color: var(--gray); font-size: 0.86rem; margin-bottom: 22px; }
+    .summary { background: var(--bg); border-radius: 12px; padding: 14px 16px; margin-bottom: 20px; text-align: left; }
+    .summary h5 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray); margin-bottom: 9px; font-weight: 700; }
+    .srow { display: flex; justify-content: space-between; font-size: 0.84rem; padding: 3px 0; }
+    .srow span:first-child { color: var(--gray); }
+    .srow span:last-child { font-weight: 600; }
+    #qr-box { display: flex; justify-content: center; background: #fff; border-radius: 14px; padding: 16px; margin-bottom: 10px; border: 1px solid var(--gray-light); }
+    .upi-text { font-size: 0.78rem; color: var(--gray); margin-bottom: 18px; }
+    .upi-text strong { color: var(--text); }
+    .pay-note { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px; padding: 11px 15px; font-size: 0.78rem; color: #92400e; line-height: 1.6; text-align: left; margin-bottom: 18px; }
+    .paid-btn { width: 100%; background: #16a34a; color: #fff; padding: 14px; border-radius: 10px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .paid-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* CONFIRM */
+    #confirm-page { display: none; min-height: 100vh; background: var(--bg); padding: 100px 20px 60px; flex-direction: column; align-items: center; }
+    .confirm-card { background: #fff; border-radius: 20px; padding: 38px; max-width: 440px; width: 100%; text-align: center; border: 1px solid var(--gray-light); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .chk-circle { width: 62px; height: 62px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 18px; }
+    .confirm-card h2 { font-family: 'Playfair Display', serif; font-size: 1.75rem; color: var(--navy); margin-bottom: 8px; }
+    .confirm-card > p { color: var(--gray); font-size: 0.86rem; margin-bottom: 22px; }
+    .wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: #25D366; color: #fff; padding: 14px; border-radius: 10px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; margin-bottom: 11px; }
+    .wa-btn:hover { background: #1db954; transform: translateY(-1px); }
+    .reset-btn { width: 100%; background: transparent; color: var(--gray); border: 1.5px solid var(--gray-light); padding: 12px; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 0.86rem; cursor: pointer; transition: all 0.2s; }
+    .reset-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* FOOTER */
+    footer { background: #0f172a; color: #94a3b8; padding: 52px 48px 28px; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1.2fr 1.2fr; gap: 36px; margin-bottom: 36px; }
+    .footer-brand p { font-size: 0.78rem; line-height: 1.7; margin-top: 10px; }
+    .footer-trust { font-size: 0.76rem; margin-top: 10px; }
+    .footer-col h5 { color: #fff; font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; }
+    .footer-col a, .footer-col p { display: block; font-size: 0.76rem; color: #94a3b8; text-decoration: none; margin-bottom: 6px; line-height: 1.5; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bar { border-top: 1px solid #1e293b; padding-top: 22px; font-size: 0.73rem; text-align: center; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 84px 20px 48px; }
+      .hero-cards { display: none; }
+      .about, .services, .audio-sec, #booking { padding: 56px 20px; }
+      .pillars, .srv-grid, .audio-grid { grid-template-columns: 1fr; }
+      .why-grid, .expect-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 22px 16px; }
+      .frow { grid-template-columns: 1fr; }
+      footer { padding: 44px 20px 22px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 22px; }
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-left > * { animation: fadeUp 0.5s ease both; }
+    .hero-tag { animation-delay: 0.05s; }
+    .hero h1 { animation-delay: 0.15s; }
+    .hero-quals { animation-delay: 0.22s; }
+    .hero-spec { animation-delay: 0.28s; }
+    .hero-stats { animation-delay: 0.34s; }
+    .hero-btns { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════ MAIN SITE ═══════ -->
+<div id="main-site">
+
+  <nav>
+    <div class="nav-brand">
+      <div class="nav-logo-box">DB</div>
+      <div class="nav-brand-text">
+        <strong>Dr. Shital Bolkuntwar</strong>
+        <span>Ayurvedic Eye &amp; ENT Specialist</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-phone">📞 +91 9503351241</span>
+      <button class="nav-cta" onclick="goTo('booking')">Book Appointment</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <span class="hero-tag">✦ Ayurvedic Eye &amp; ENT Specialist</span>
+      <h1>Dr. Shital Santosh Bolkuntwar</h1>
+      <div class="hero-quals">
+        <p>MS (AYU) from MUHS Nashik</p>
+        <p>PhD from DY Patil University, Mumbai</p>
+      </div>
+      <p class="hero-spec">Specialised in diseases of Eye and Ear, Nose &amp; Throat</p>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="stat-icon blue">📅</div>
+          <div><div class="stat-num">15+</div><div class="stat-lbl">Years Experience</div></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon green">👥</div>
+          <div><div class="stat-num">5000+</div><div class="stat-lbl">Happy Patients</div></div>
+        </div>
+      </div>
+      <div class="hero-btns">
+        <button class="btn-blue" onclick="goTo('booking')">📅 Book Appointment</button>
+        <button class="btn-ghost" onclick="goTo('services')">Our Services</button>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="hero-img-card eye">
+        <div class="hic-emoji">👁️</div>
+        <div><h4>Eye Care</h4><p>Netra Chikitsa — Ayurvedic Eye Treatment</p></div>
+      </div>
+      <div class="hero-img-card ent">
+        <div class="hic-emoji">👂</div>
+        <div><h4>ENT Care</h4><p>Karna-Nasa-Kantha Chikitsa</p></div>
+      </div>
+      <div class="hero-img-card shiro">
+        <div class="hic-emoji">🌿</div>
+        <div><h4>Shirorog Treatment</h4><p>Ayurvedic Head &amp; Therapy</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="section-lbl">About Dr. Bolkuntwar</div>
+      <h2 class="section-title">Compassionate Care, Expert Treatment</h2>
+      <div class="sdiv"></div>
+      <p>Dr. Shital Santosh Bolkuntwar is a highly qualified Ayurvedic physician with specialized expertise in treating diseases of the Eye and ENT (Ear, Nose &amp; Throat). With an MS (AYU) from MUHS Nashik and a PhD from DY Patil University, Mumbai, Dr. Bolkuntwar combines traditional Ayurvedic wisdom with modern medical knowledge to provide comprehensive and holistic care to patients.</p>
+      <p>Dr. Bolkuntwar believes in personalized treatment plans that address the root cause of ailments while considering the patient's overall well-being. With over 15 years of experience, she has successfully treated thousands of patients suffering from various eye and ENT conditions using natural and effective Ayurvedic therapies.</p>
+      <div class="pillars">
+        <div class="pillar"><div class="pillar-icon b">💙</div><h4>Patient-Centered Care</h4><p>Every patient receives personalized attention and treatment plans tailored to their unique needs and health conditions.</p></div>
+        <div class="pillar"><div class="pillar-icon g">📚</div><h4>Evidence-Based Approach</h4><p>Combining ancient Ayurvedic wisdom with modern research to provide effective, scientifically-backed treatments.</p></div>
+        <div class="pillar"><div class="pillar-icon t">🎯</div><h4>Holistic Healing</h4><p>Addressing the root cause of ailments while promoting overall wellness through natural therapies and lifestyle guidance.</p></div>
+      </div>
+      <div class="mission">
+        <h3>Our Mission</h3>
+        <p>To provide compassionate, evidence-based Ayurvedic care that improves the quality of life for patients suffering from eye and ENT disorders.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="srv-header">
+      <div class="section-lbl">Our Services</div>
+      <h2 class="section-title">Specialized Treatment for Eye &amp; ENT Conditions</h2>
+      <div class="sdiv"></div>
+      <p>Comprehensive Ayurvedic treatments combining traditional therapies with modern care standards</p>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card"><div class="srv-icon">👁️</div><h4>Eye Care &amp; Treatment</h4><p>Comprehensive Ayurvedic treatment for various eye conditions including dry eyes, conjunctivitis, vision problems, and eye strain.</p><h5>Treatment Options:</h5><ul class="srv-list"><li>Netra Tarpana</li><li>Netra Dhara</li><li>Anjana therapy</li><li>Putapaka</li></ul></div>
+      <div class="srv-card"><div class="srv-icon">👂</div><h4>Ear Disorders</h4><p>Specialized care for ear-related conditions such as ear infections, tinnitus, hearing problems, and earache.</p><h5>Treatment Options:</h5><ul class="srv-list"><li>Karna Purana</li><li>Ear infection treatment</li><li>Tinnitus management</li><li>Hearing support therapy</li></ul></div>
+      <div class="srv-card"><div class="srv-icon">👃</div><h4>Nose &amp; Sinus Care</h4><p>Effective treatment for nasal congestion, sinusitis, allergic rhinitis, and other nasal disorders.</p><h5>Treatment Options:</h5><ul class="srv-list"><li>Nasya therapy</li><li>Sinusitis treatment</li><li>Allergy management</li><li>Nasal polyp care</li></ul></div>
+      <div class="srv-card"><div class="srv-icon">🎙️</div><h4>Throat Disorders</h4><p>Treatment for throat infections, tonsillitis, voice problems, and other throat-related conditions.</p><h5>Treatment Options:</h5><ul class="srv-list"><li>Throat infection care</li><li>Tonsillitis treatment</li><li>Voice disorder therapy</li><li>Chronic cough management</li></ul></div>
+      <div class="srv-card"><div class="srv-icon">🛡️</div><h4>Preventive Care</h4><p>Guidance on maintaining optimal eye and ENT health through lifestyle modifications and preventive measures.</p><h5>Treatment Options:</h5><ul class="srv-list"><li>Health consultations</li><li>Lifestyle counseling</li><li>Dietary guidance</li><li>Preventive therapies</li></ul></div>
+      <div class="srv-card"><div class="srv-icon">✨</div><h4>Holistic Wellness</h4><p>Comprehensive approach to overall health combining Ayurvedic principles for complete well-being.</p><h5>Treatment Options:</h5><ul class="srv-list"><li>Detoxification</li><li>Immunity boosting</li><li>Stress management</li><li>Wellness programs</li></ul></div>
+    </div>
+    <div class="why-box">
+      <h3>Why Choose Ayurvedic Treatment?</h3>
+      <div class="why-grid">
+        <div class="why-item"><div class="why-chk">✓</div><div><h5>Natural &amp; Safe</h5><p>No harmful side effects, using natural herbs and therapies</p></div></div>
+        <div class="why-item"><div class="why-chk">✓</div><div><h5>Root Cause Treatment</h5><p>Addresses underlying issues, not just symptoms</p></div></div>
+        <div class="why-item"><div class="why-chk">✓</div><div><h5>Long-lasting Results</h5><p>Promotes sustainable healing and prevents recurrence</p></div></div>
+        <div class="why-item"><div class="why-chk">✓</div><div><h5>Personalized Care</h5><p>Treatment plans customized to your unique constitution</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIO CONSULTATION -->
+  <section class="audio-sec">
+    <div class="audio-header">
+      <div class="section-lbl">Get Started</div>
+      <h2 class="section-title">Audio Consultation Available</h2>
+      <div class="sdiv"></div>
+      <p>Audio consultations available for Eye and ENT conditions</p>
+    </div>
+    <div class="audio-grid">
+      <div class="audio-card"><div class="audio-icon b">📞</div><h4>Audio Consultation</h4><p>Connect with Dr. Bolkuntwar via phone from the comfort of your home</p></div>
+      <div class="audio-card"><div class="audio-icon g">📅</div><h4>Flexible Scheduling</h4><p>Book appointments at your convenient time</p></div>
+      <div class="audio-card"><div class="audio-icon t">⏰</div><h4>Quick Response</h4><p>Get expert advice within 24 hours of booking</p></div>
+    </div>
+    <div class="cta-banner">
+      <h3>Ready to Start Your Healing Journey?</h3>
+      <p>Book your audio consultation today and experience personalized Ayurvedic care for Eye and ENT conditions</p>
+      <div class="cta-btns">
+        <button class="btn-white" onclick="goTo('booking')">📅 Book Audio Consultation</button>
+        <a href="tel:+919503351241" class="btn-outline-w">📞 Call +91 9503351241</a>
+      </div>
+    </div>
+    <div class="expect-grid">
+      <div class="expect-box"><h4>What to Expect</h4><ul><li>Detailed health assessment and diagnosis</li><li>Personalized Ayurvedic treatment plan</li><li>Dietary and lifestyle recommendations</li><li>Follow-up support and guidance</li></ul></div>
+      <div class="expect-box"><h4>How It Works</h4><ol><li>Book your preferred date and time slot</li><li>Receive confirmation call within 24 hours</li><li>Receive call at scheduled time for consultation</li><li>Get your treatment plan and prescriptions</li></ol></div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="booking">
+    <div class="booking-header">
+      <div class="section-lbl">Book Appointment</div>
+      <h2 class="section-title">Schedule Your Consultation</h2>
+      <div class="sdiv"></div>
+      <p>Take the first step towards natural healing. Book your appointment today.</p>
+    </div>
+    <div class="form-wrap">
+      <div class="form-card">
+        <div class="frow">
+          <div class="fg"><label>👤 Full Name *</label><input id="f-name" type="text" placeholder="Enter your full name"/></div>
+          <div class="fg"><label>📞 Phone Number *</label><input id="f-phone" type="tel" placeholder="+91 98765 43210" maxlength="10"/></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>✉️ Email (Optional)</label><input id="f-email" type="email" placeholder="your@email.com"/></div>
+          <div class="fg"><label>🔢 Age *</label><input id="f-age" type="number" placeholder="Your age" min="1" max="120"/></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>📅 Preferred Date *</label><input id="f-date" type="date"/></div>
+          <div class="fg"><label>⏰ Preferred Time *</label>
+            <select id="f-time">
+              <option value="">Select time slot</option>
+              <option>9:00 AM</option><option>9:30 AM</option><option>10:00 AM</option>
+              <option>10:30 AM</option><option>11:00 AM</option><option>11:30 AM</option>
+              <option>12:00 PM</option><option>3:00 PM</option><option>3:30 PM</option>
+              <option>4:00 PM</option><option>4:30 PM</option><option>5:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="frow full">
+          <div class="fg"><label>💬 Your Health Concern (Optional)</label><textarea id="f-reason" placeholder="Please describe your symptoms or health concerns…"></textarea></div>
+        </div>
+        <button class="submit-btn" onclick="submitForm()">Request Appointment →</button>
+        <p class="form-note">* We'll call you to confirm your appointment within 24 hours</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <div style="width:36px;height:36px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:0.82rem;flex-shrink:0;">DB</div>
+          <span style="color:#fff;font-weight:600;font-size:0.95rem;">Dr. Shital Bolkuntwar</span>
+        </div>
+        <p>Specialized Ayurvedic care for Eye and ENT conditions. Combining traditional wisdom with modern expertise.</p>
+        <p class="footer-trust">❤️ Trusted by 5000+ patients</p>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <a href="#home">Home</a>
+        <a href="#about">About Dr. Bolkuntwar</a>
+        <a href="#services">Our Services</a>
+        <a href="#booking">Book Appointment</a>
+      </div>
+      <div class="footer-col">
+        <h5>Our Specialties</h5>
+        <p>Eye Care &amp; Treatment (Netra Chikitsa)</p>
+        <p>Ear Disorders (Karna Roga)</p>
+        <p>Nose &amp; Sinus Care (Nasa Roga)</p>
+        <p>Throat Disorders (Kantha Roga)</p>
+        <p>Shirorog Treatment</p>
+        <p>Holistic Wellness</p>
+      </div>
+      <div class="footer-col">
+        <h5>Audio Consultation</h5>
+        <p>📞 Connect with Dr. Bolkuntwar from anywhere through phone consultation</p>
+        <p style="color:#93c5fd;font-weight:600;margin-top:6px;">+91 9503351241</p>
+        <button onclick="goTo('booking')" style="margin-top:12px;width:100%;background:var(--blue);color:#fff;border:none;padding:10px;border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">Book Consultation</button>
+      </div>
+    </div>
+    <div class="footer-bar">© 2026 Dr. Shital Santosh Bolkuntwar. All rights reserved.</div>
+  </footer>
+</div>
+
+<!-- ═══════ PAYMENT PAGE ═══════ -->
+<div id="payment-page">
+  <div class="pay-card">
+    <h2>Complete Payment</h2>
+    <p>Scan the QR below using PhonePe, GPay, or Paytm to pay the consultation fee.</p>
+    <div class="summary">
+      <h5>Appointment Summary</h5>
+      <div class="srow"><span>Patient</span><span id="p-name">—</span></div>
+      <div class="srow"><span>Phone</span><span id="p-phone">—</span></div>
+      <div class="srow"><span>Date</span><span id="p-date">—</span></div>
+      <div class="srow"><span>Time</span><span id="p-time">—</span></div>
+    </div>
+    <div id="qr-box"></div>
+    <div class="upi-text">UPI ID: <strong>sohamjiddewar777@okaxis</strong></div>
+    <div class="pay-note">📌 After completing your payment, click <strong>"I Have Paid"</strong> below. Dr. Bolkuntwar will receive your appointment details on WhatsApp.</div>
+    <button class="paid-btn" onclick="showConfirm()">✅ I Have Paid — Confirm Appointment</button>
+  </div>
+</div>
+
+<!-- ═══════ CONFIRM PAGE ═══════ -->
+<div id="confirm-page">
+  <div class="confirm-card">
+    <div class="chk-circle">✓</div>
+    <h2>Appointment Booked!</h2>
+    <p>Click the button below — it will open WhatsApp with your complete details pre-typed for Dr. Bolkuntwar.</p>
+    <div class="summary" style="text-align:left;margin-bottom:18px;">
+      <h5>Your Details</h5>
+      <div class="srow"><span>Name</span><span id="c-name">—</span></div>
+      <div class="srow"><span>Age</span><span id="c-age">—</span></div>
+      <div class="srow"><span>Phone</span><span id="c-phone">—</span></div>
+      <div class="srow"><span>Date</span><span id="c-date">—</span></div>
+      <div class="srow"><span>Time</span><span id="c-time">—</span></div>
+      <div class="srow"><span>Concern</span><span id="c-reason" style="max-width:180px;text-align:right;font-size:0.76rem;">—</span></div>
+    </div>
+    <a id="wa-link" href="#" target="_blank" class="wa-btn">📲 Send Details to Dr. Bolkuntwar on WhatsApp</a>
+    <button class="reset-btn" onclick="resetSite()">← Book Another Appointment</button>
+  </div>
+</div>
+
+<script>
+  document.getElementById('f-date').min = new Date().toISOString().split('T')[0];
+
+  function goTo(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+
+  let pt = {};
+
+  function submitForm() {
+    const name   = document.getElementById('f-name').value.trim();
+    const phone  = document.getElementById('f-phone').value.trim();
+    const age    = document.getElementById('f-age').value.trim();
+    const date   = document.getElementById('f-date').value;
+    const time   = document.getElementById('f-time').value;
+    const email  = document.getElementById('f-email').value.trim();
+    const reason = document.getElementById('f-reason').value.trim();
+
+    if (!name || !phone || !age || !date || !time) {
+      alert('Please fill in all required fields: Name, Phone, Age, Date, and Time.'); return;
+    }
+    if (!/^\d{10}$/.test(phone)) {
+      alert('Please enter a valid 10-digit phone number.'); return;
+    }
+
+    pt = { name, phone, age, email, date, time, reason };
+
+    document.getElementById('p-name').textContent  = name;
+    document.getElementById('p-phone').textContent = phone;
+    document.getElementById('p-date').textContent  = fmtDate(date);
+    document.getElementById('p-time').textContent  = time;
+
+    document.getElementById('qr-box').innerHTML = '';
+    new QRCode(document.getElementById('qr-box'), {
+      text: 'upi://pay?pa=sohamjiddewar777@okaxis&pn=Dr+Shital+Bolkuntwar&cu=INR',
+      width: 200, height: 200,
+      colorDark: '#1a2744', colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    document.getElementById('main-site').style.display = 'none';
+    document.getElementById('payment-page').style.display = 'flex';
+    window.scrollTo(0,0);
+  }
+
+  function showConfirm() {
+    document.getElementById('c-name').textContent   = pt.name;
+    document.getElementById('c-age').textContent    = pt.age;
+    document.getElementById('c-phone').textContent  = pt.phone;
+    document.getElementById('c-date').textContent   = fmtDate(pt.date);
+    document.getElementById('c-time').textContent   = pt.time;
+    document.getElementById('c-reason').textContent = pt.reason || 'Not specified';
+
+    const msg =
+      `🏥 *New Appointment — Dr. Shital Bolkuntwar*\n\n` +
+      `👤 *Patient:* ${pt.name}\n` +
+      `🔢 *Age:* ${pt.age}\n` +
+      `📞 *Phone:* ${pt.phone}\n` +
+      (pt.email ? `✉️ *Email:* ${pt.email}\n` : '') +
+      `📅 *Date:* ${fmtDate(pt.date)}\n` +
+      `⏰ *Time:* ${pt.time}\n` +
+      `🩺 *Health Concern:* ${pt.reason || 'Not specified'}\n\n` +
+      `💳 *Payment:* UPI Paid ✅\n` +
+      `_Booked via clinic website_`;
+
+    // ⚠️ This uses the phone number from the site: +91 9503351241
+    // Change 919503351241 below if the WhatsApp number is different
+    document.getElementById('wa-link').href =
+      `https://wa.me/919503351241?text=${encodeURIComponent(msg)}`;
+
+    document.getElementById('payment-page').style.display = 'none';
+    document.getElementById('confirm-page').style.display = 'flex';
+    window.scrollTo(0,0);
+  }
+
+  function resetSite() {
+    ['f-name','f-phone','f-email','f-age','f-date','f-reason'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('f-time').value = '';
+    document.getElementById('confirm-page').style.display = 'none';
+    document.getElementById('main-site').style.display = 'block';
+    goTo('booking');
+  }
+
+  function fmtDate(d) {
+    if (!d) return '—';
+    const [y,m,day] = d.split('-');
+    return `${day} ${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1]} ${y}`;
+  }
+</script>
+</body>
+</html>
